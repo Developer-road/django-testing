@@ -19,18 +19,17 @@ class TestUrls(SimpleTestCase):
     def test_list_url_resolves(self):
         url = reverse("list")
 
-        print(resolve(url))
-        # Asserts that the home url points to the view function fo project list
+        # Asserts that the home url points to the view function project list
         self.assertEquals(resolve(url).func, project_list)
 
     def test_create_project_url_resolves(self):
         url = reverse("add")
-        print(resolve(url))
-    
+
+        # Asserts that the add url points to the CBV ProjectCreateView 
         self.assertEquals(resolve(url).func.view_class, ProjectCreateView)
     
     def test_project_detail_url_resolves(self):
         url = reverse("detail", args=["some-slug"])
-        print(resolve(url))
 
+        # Asserts that the detail url points to the function project_detail 
         self.assertEquals(resolve(url).func, project_detail)
