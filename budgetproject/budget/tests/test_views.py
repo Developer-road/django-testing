@@ -121,7 +121,7 @@ class TestViews(TestCase):
         create_form = {
             "name": "project2",
             "budget": 20000,
-            "categoriesString": "new_category, other_category"
+            "categoriesString": "new_category,other_category"
         }
 
 
@@ -131,15 +131,26 @@ class TestViews(TestCase):
 
         project_2_categories = Category.objects.filter(project=project_2)
 
+        first_category = Category.objects.get(id=3)
+        second_category = Category.objects.get(id=4)
+    
+
 
         self.assertEquals(response.status_code, 302)
 
+
         self.assertEquals(project_2.name, "project2")
 
+
+        # Categories created
+
         self.assertEquals(project_2_categories.count(), 2)
+
+        self.assertEquals(first_category.name, "new_category")
+        
+        self.assertEquals(second_category.name, "other_category")
 
 
         self.assertEquals(Project.objects.count(), 2)
 
         self.assertEquals(Category.objects.count(), 4)
-

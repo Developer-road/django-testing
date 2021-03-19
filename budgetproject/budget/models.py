@@ -3,6 +3,7 @@ from django.utils.text import slugify
 
 
 class Project(models.Model):
+
     name = models.CharField(max_length=100)
 
     slug = models.SlugField(max_length=100, unique=True, blank=True)
